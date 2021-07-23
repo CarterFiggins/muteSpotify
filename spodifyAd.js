@@ -12,25 +12,29 @@
   "use strict";
 
   console.log("Spodify ad silencer running");
+let muted = false;
 
-  let muted = false;
+const adEvent = () => {
+  const isAd =
+    document.querySelectorAll('[data-testid="track-info-advertiser"]').length >
+      0 ||
+    document.querySelectorAll('[data-testid="context-item-info-ad-title"]')
+      .length > 0;
 
-  const adEvent = () => {
-    const isAd =
-      document.querySelectorAll('[data-testid="track-info-advertiser"]')
-        .length > 0;
-    const muteButton = document.getElementsByClassName(
-      "volume-bar__icon-button"
-    )[0];
-    if (isAd && !muted) {
-      muted = true;
-      muteButton.click();
-    }
-    if (!isAd && muted) {
-      muted = false;
-      muteButton.click();
-    }
-  };
+  // Mute functionality
+  const muteButton = document.getElementsByClassName(
+    "volume-bar__icon-button"
+  )[0];
+  if (isAd && !muted) {
+    muted = true;
+    muteButton.click();
+  }
+  if (!isAd && muted) {
+    muted = false;
+    muteButton.click();
+  }
+};
 
-  setInterval(adEvent, 1000);
+setInterval(adEvent, 500);
+
 })();
