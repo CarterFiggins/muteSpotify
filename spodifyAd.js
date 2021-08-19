@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  mute spotify ads
-// @author       You
+// @author       Computing Fig
 // @match        *://open.spotify.com/*
 // @icon         https://open.spotify.com/favicon.ico
 // @grant        none
@@ -11,30 +11,38 @@
 (function () {
   "use strict";
 
-  console.log("Spodify ad silencer running");
-let muted = false;
+  console.log("ad silencer running");
+  let muted = false;
 
-const adEvent = () => {
-  const isAd =
-    document.querySelectorAll('[data-testid="track-info-advertiser"]').length >
-      0 ||
-    document.querySelectorAll('[data-testid="context-item-info-ad-title"]')
-      .length > 0;
+  const adEvent = () => {
+    // looking for ads playing
+    const isAd =
+      document.querySelectorAll('[data-testid="track-info-advertiser"]')
+        .length > 0 ||
+      document.querySelectorAll('[data-testid="context-item-info-ad-title"]')
+        .length > 0;
 
-  // Mute functionality
-  const muteButton = document.getElementsByClassName(
-    "volume-bar__icon-button"
-  )[0];
-  if (isAd && !muted) {
-    muted = true;
-    muteButton.click();
-  }
-  if (!isAd && muted) {
-    muted = false;
-    muteButton.click();
-  }
-};
+    const muteButton = document.getElementsByClassName(
+      "volume-bar__icon-button"
+    )[0];
 
-setInterval(adEvent, 500);
+    if (isAd) {
+      // checks if muteButton is active
+      muted = muteButton.title === "Unmute";
+    }
 
+    // mute ad
+    if (isAd && !muted) {
+      muted = true;
+      muteButton.click();
+    }
+    // play music
+    if (!isAd && muted) {
+      muted = false;
+      muteButton.click();
+    }
+  };
+
+  // adEvent is ran every 500 milliseconds
+  setInterval(adEvent, 500);
 })();
