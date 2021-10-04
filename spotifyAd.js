@@ -26,11 +26,6 @@
       "volume-bar__icon-button"
     )[0];
 
-    if (isAd) {
-      // checks if muteButton is active
-      muted = muteButton.title === "Unmute";
-    }
-
     // mute ad
     if (isAd && !muted) {
       muted = true;
