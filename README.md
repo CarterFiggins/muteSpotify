@@ -7,4 +7,4 @@ Now instead of anoying ads I get the sound of silence. :D
 It works by checking the html tags. If the targeted tag appears it will mute spotify by clicking the mute button and when the ad is
 gone it unmutes it. 
 
-I use [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) to enject the script onto the page everytime spotify is loaded. It is a chrome plugin that you can download.
+I use [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) to enject the script onto the page everytime spotify is loaded. It is a browser plugin that you can download.
